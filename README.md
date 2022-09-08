@@ -15,3 +15,5 @@
 ### Diagrams:
 
 ERD:
+
+![alt ERD](./README/erd.drawio.png)
