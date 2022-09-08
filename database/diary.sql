@@ -154,7 +154,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,6 +163,10 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Test','demo@diary.se',NULL,'$2y$10$e7UsJkqagjdX/nPUBr2NmeegVz5XSBWGibw4IlQUwJVClog2rR1mm',NULL,'2022-09-08 14:38:16','2022-09-08 14:38:16');
+INSERT INTO `users` VALUES (2,'Test','test@diary.se',NULL,'$2y$10$e7UsJkqagjdX/nPUBr2NmeegVz5XSBWGibw4IlQUwJVClog2rR1mm',NULL,'2022-09-08 14:38:16','2022-09-08 14:38:16');
+INSERT INTO `users` VALUES (3,'Test','test1@diary.se',NULL,'$2y$10$e7UsJkqagjdX/nPUBr2NmeegVz5XSBWGibw4IlQUwJVClog2rR1mm',NULL,'2022-09-08 14:38:16','2022-09-08 14:38:16');
+INSERT INTO `users` VALUES (4,'Test','test2@diary.se',NULL,'$2y$10$e7UsJkqagjdX/nPUBr2NmeegVz5XSBWGibw4IlQUwJVClog2rR1mm',NULL,'2022-09-08 14:38:16','2022-09-08 14:38:16');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -175,4 +179,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-07 14:02:31
+-- Dump completed on 2022-09-08 14:49:15
