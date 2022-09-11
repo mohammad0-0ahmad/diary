@@ -18,4 +18,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post("/diary", "DiaryController@store")->name('diary.store')->middleware('auth');
+Route::controller(DiaryController::class)
+    ->prefix('diary')
+    ->as('diary.')
+    ->middleware('auth')
+    ->group(function () {
+        Route::post("/", "store")->name('store');
+        Route::delete("/{date}", "destroy")->name('destroy')->where("date", config("route_regex.date"));
+    });

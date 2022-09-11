@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Diary extends Model
 {
     use HasFactory;
-        
+
     protected $fillable = [
         'owner',
-        'privacy',
         'date',
-        'content'
+        'privacy',
+        'content',
     ];
 }

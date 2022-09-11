@@ -15,7 +15,7 @@ class DiaryController extends Controller
     {
         $date = request('date');
         try {
-            $result = Diary::create([
+            Diary::create([
                 'owner' => request('owner'),
                 'privacy' => request('privacy'),
                 'date' => $date,
@@ -38,6 +38,22 @@ class DiaryController extends Controller
                     ResponseCode::HTTP_BAD_REQUEST;
             }
             return Response::json($data, $status);
+        }
+    }
+
+    public function destroy($date)
+    {
+        try {
+            Diary::where([
+                'owner' => auth()->user()->id,
+                'date' => $date,
+            ])
+                ->limit(1)
+                ->delete();
+
+            return response(null, ResponseCode::HTTP_OK);
+        } catch (QueryException $e) {
+            return response(null, ResponseCode::HTTP_BAD_REQUEST);
         }
     }
 }

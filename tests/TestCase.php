@@ -21,17 +21,18 @@ abstract class TestCase extends BaseTestCase
         return Diary::where('owner', $user->id)->delete();
     }
 
-    protected function createNewDiary($user, $date, $content)
+    protected function createNewDiary($owner, $date, $content, $privacy = null)
     {
-        $diaryData = [
-            'owner' => $user->id,
+        return Diary::create([
+            'owner' => $owner,
+            'privacy' => $privacy,
             'date' => $date,
             'content' => $content,
-        ];
+        ]);
+    }
 
-        $response = $this->actingAs($user)
-            ->postJson(route('diary.store'), $diaryData);
-
-        return $response;
+    protected function getDiary($owner, $date)
+    {
+        return Diary::where("owner", $owner)->where('date', $date)->first();
     }
 }
