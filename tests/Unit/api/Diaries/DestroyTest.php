@@ -21,7 +21,7 @@ class DestroyDiaryTest extends TestCase
 
     public function test_delete_diary_with_unauthed_user()
     {
-        $response = $this->deleteJson(route('diary.destroy', self::$date));
+        $response = $this->deleteJson(route('diaries.destroy', self::$date));
         $response->assertUnauthorized();
 
         $testRecord = $this->getDiary($this->diaryOwner->id, self::$date);
@@ -31,7 +31,7 @@ class DestroyDiaryTest extends TestCase
     public function test_delete_user_diary()
     {
         $response = $this->actingAs($this->diaryOwner)
-            ->delete(route('diary.destroy', self::$date));
+            ->delete(route('diaries.destroy', self::$date));
         $response->assertoK();
 
         $testRecord = $this->getDiary($this->diaryOwner->id, self::$date);
@@ -41,7 +41,7 @@ class DestroyDiaryTest extends TestCase
     public function test_request_to_diary_distroy_with_invalid_date()
     {
         $response = $this->actingAs($this->diaryOwner)
-            ->delete(route('diary.destroy', "2016-02-30"));
+            ->delete(route('diaries.destroy', "2016-02-30"));
         $response->assertNotFound();
     }
 }

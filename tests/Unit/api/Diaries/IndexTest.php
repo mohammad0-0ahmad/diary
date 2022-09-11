@@ -28,14 +28,14 @@ class ShowDiariesTest extends TestCase
 
     public function test_show_diaries_with_unauthed_user()
     {
-        $response = $this->getJson(route("diary.index"));
+        $response = $this->getJson(route("diaries.index"));
         $response->assertUnauthorized();
     }
 
     public function test_show_all_user_diaries()
     {
         $response = $this->actingAs($this->diaryOwner)
-            ->getJson(route("diary.index"));
+            ->getJson(route("diaries.index"));
         $response->assertOK();
         $response->assertJson($this->testDiaries);
     }

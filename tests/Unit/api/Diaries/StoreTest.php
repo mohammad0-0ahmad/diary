@@ -18,14 +18,14 @@ class StoreDiaryTest extends TestCase
         ];
 
         $response = $this->actingAs($user)
-            ->postJson(route('diary.store'), $diaryData);
+            ->postJson(route('diaries.store'), $diaryData);
 
         return $response;
     }
 
     public function test_create_new_diary_with_unauthed_user()
     {
-        $response = $this->postJson(route('diary.store'));
+        $response = $this->postJson(route('diaries.store'));
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 

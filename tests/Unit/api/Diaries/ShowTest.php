@@ -23,14 +23,14 @@ class ShowDiaryTest extends TestCase
 
     public function test_show_diary_with_unauthed_user()
     {
-        $response = $this->getJson(route("diary.show", $this->testDiary->date));
+        $response = $this->getJson(route("diaries.show", $this->testDiary->date));
         $response->assertUnauthorized();
     }
 
     public function test_show_diary()
     {
         $response = $this->actingAs($this->diaryOwner)
-            ->getJson(route("diary.show", $this->testDiary->date));
+            ->getJson(route("diaries.show", $this->testDiary->date));
         $response->assertOK();
         $response->assertJson($this->testDiary->toArray());
     }
@@ -38,7 +38,7 @@ class ShowDiaryTest extends TestCase
     public function test_show_unexist_diary()
     {
         $response = $this->actingAs($this->diaryOwner)
-            ->getJson(route("diary.show", "2000-01-01"));
+            ->getJson(route("diaries.show", "2000-01-01"));
         $response->assertNotFound();
     }
 
