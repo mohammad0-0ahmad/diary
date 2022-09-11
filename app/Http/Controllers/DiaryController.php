@@ -11,6 +11,43 @@ use \Illuminate\Database\QueryException;
 
 class DiaryController extends Controller
 {
+    public function index()
+    {
+        try {
+            $data = Diary::where("owner", auth()->user()->id)
+                ->get();
+
+            if (isset($data)) {
+                return Response::json($data, ResponseCode::HTTP_OK);
+            } else {
+                return response(null, ResponseCode::HTTP_NOT_FOUND);
+            }
+
+        } catch (Throwable $th) {
+            var_dump($th);
+            return response($null, ResponseCode::HTTP_BAD_REQUEST);
+        }
+    }
+
+    public function show($date)
+    {
+        try {
+            $data = Diary::where("owner", auth()->user()->id)
+                ->where("date", $date)
+                ->limit(1)->get()->toArray();
+
+            if (count($data)) {
+                return Response::json($data[0], ResponseCode::HTTP_OK);
+            } else {
+                return response(null, ResponseCode::HTTP_NOT_FOUND);
+            }
+
+        } catch (Throwable $th) {
+            var_dump($th);
+            return response($null, ResponseCode::HTTP_BAD_REQUEST);
+        }
+    }
+
     public function store()
     {
         $date = request('date');

@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class StoreDiaryTest extends TestCase
 {
-    private static $date = "2022/2/2";
+    private static $date = "2022-02-02";
 
     private function createNewDiaryViaApiEndpoint($user, $date, $content)
     {
