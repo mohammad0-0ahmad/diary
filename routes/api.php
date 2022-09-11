@@ -26,5 +26,6 @@ Route::controller(DiaryController::class)
         Route::get("/", "index")->name('index');
         Route::post("/", "store")->name('store');
         Route::get("/{date}", "show")->name('show')->where("date", config("route_regex.date"));
+        Route::patch("/{date}", "update")->name('update')->where("date", config("route_regex.date"));
         Route::delete("/{date}", "destroy")->name('destroy')->where("date", config("route_regex.date"));
     });

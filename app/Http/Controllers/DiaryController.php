@@ -78,6 +78,32 @@ class DiaryController extends Controller
         }
     }
 
+    public function update($date)
+    {
+        try {
+            $newData = [
+                "content" => request("content"),
+                "date" => request("date"),
+            ];
+
+            $newData = array_filter($newData, function ($item) {
+                return isset($item) ? true : false;
+            });
+
+            Diary::where([
+                'owner' => auth()->user()->id,
+                'date' => $date,
+            ])
+                ->limit(1)
+                ->update($newData);
+
+            return response(null, ResponseCode::HTTP_OK);
+        } catch (QueryException $e) {
+            echo $e;
+            return response(null, ResponseCode::HTTP_BAD_REQUEST);
+        }
+    }
+
     public function destroy($date)
     {
         try {
