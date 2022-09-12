@@ -6,6 +6,7 @@
 
 import "./bootstrap";
 import { createApp } from "vue";
+import { i18nVue } from 'laravel-vue-i18n';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -13,7 +14,9 @@ import { createApp } from "vue";
  * to use in your application's views. An example is included for you.
  */
 
-const app = createApp({});
+const app = createApp({}).use(i18nVue, {
+    resolve: lang => import(`../../lang/${lang}.json`),
+});
 
 // import ExampleComponent from "./components/ExampleComponent.vue";
 // app.component("example-component", ExampleComponent);
