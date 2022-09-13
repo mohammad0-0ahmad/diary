@@ -21,6 +21,12 @@ form {
     display: contents;
 }
 
+.content-container {
+    @extend .container-md;
+    @extend .bg-white;
+    min-height: 92vh;
+}
+
 .diary-form {
     @extend .form-group !optional;
 

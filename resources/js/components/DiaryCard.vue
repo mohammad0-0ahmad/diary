@@ -29,7 +29,8 @@
                         $t(`components.diary-card.buttons.edit.label`)
                         }}
                     </button>
-                    <button class="bg-danger">{{$t('components.diary-card.buttons.delete.label')}}</button>
+                    <button @:click="handleDiaryDeleteion(data?.date)"
+                        class="bg-danger">{{$t('components.diary-card.buttons.delete.label')}}</button>
                 </div>
             </div>
         </div>
@@ -38,6 +39,7 @@
 
 <script>
 export default {
+    inject: ['handleDiaryDeleteion'],
     props: {
         data: {
             type: Object
