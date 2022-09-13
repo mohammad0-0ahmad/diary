@@ -14,5 +14,69 @@
 }
 
 main {
-    display: contents
+    display: contents;
+}
+
+form {
+    display: contents;
+}
+
+.diary-form {
+    @extend .form-group !optional;
+
+    &>* {
+        @extend .row;
+        margin: 10px 0;
+    }
+
+    textarea {
+        @extend .form-control;
+        min-height: 150px;
+    }
+
+    label {
+        @extend .my-md-0;
+        @extend .my-2 !optional;
+    }
+
+    label>span {
+        margin-bottom: 5px;
+        margin-left: 5px;
+        padding-left: 0;
+    }
+
+    button {
+        @extend .btn;
+        @extend .text-secondary;
+        @extend .col-sm-5;
+        @extend .col-12;
+        @extend .mx-sm-2;
+        @extend .mx-0;
+        @extend .my-2;
+    }
+}
+
+.diary-base {
+    @extend .card;
+    @extend .container;
+    @extend .my-3;
+    @extend .p-3;
+    max-width: 687px;
+
+    @include media-breakpoint-down(sm) {
+        max-width: 450px;
+
+    }
+}
+
+.diary-generator {
+    @extend .diary-base;
+    @extend .bg-primary;
+    @extend .text-secondary;
+    @extend .mt-2;
+
+    .title {
+        @extend .fs-3;
+        @extend .fw-bold;
+    }
 }
