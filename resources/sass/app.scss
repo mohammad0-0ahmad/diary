@@ -80,3 +80,54 @@ form {
         @extend .fw-bold;
     }
 }
+
+.diary-card {
+    @extend .diary-base;
+    @extend .bg-secondary;
+    @extend .text-primary;
+
+    .title {
+        @extend .fs-3;
+        @extend .fw-bold;
+    }
+
+    input,
+    select,
+    textarea {
+        @extend .bg-white;
+    }
+
+    .preview {
+        &>* {
+            // @extend .row;
+            @extend .gx-0;
+            margin: 10px 0;
+        }
+
+        span {
+            @extend .fw-bold;
+            font-size: 1.5rem;
+
+            @include media-breakpoint-down(sm) {
+                font-size: 1rem;
+            }
+        }
+
+        p {
+            @extend .ps-4;
+            color: $black;
+        }
+
+        button {
+            @extend .btn;
+            @extend .col-12;
+            @extend .col-sm-5;
+            @extend .mx-0;
+            @extend .mx-sm-2;
+            @extend .my-2;
+            @extend .text-secondary;
+        }
+
+    }
+
+}

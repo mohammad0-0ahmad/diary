@@ -28,4 +28,15 @@ return [
         "title" => "Create new diary",
     ],
 
+    "diary-card" => [
+        "labels" => [
+            "date" => "Date",
+            "privacy" => "Privacy",
+            "content" => "Content",
+        ],
+        "buttons" => [
+            "edit" => ["label" => "Edit"],
+            "delete" => ["label" => "Delete"],
+        ],
+    ],
 ];
