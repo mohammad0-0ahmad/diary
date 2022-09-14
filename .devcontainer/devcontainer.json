@@ -1,0 +1,37 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.245.0/containers/docker-existing-docker-compose
+// If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
+{
+    "name": "Diary",
+    "dockerComposeFile": ["docker-compose.yml"],
+    "service": "diary",
+    "workspaceFolder": "/workspace",
+    "forwardPorts": [80, 8000],
+    "postStartCommand": "git config --global core.editor 'code --wait'; composer run dev-initial",
+    "extensions": [
+        "streetsidesoftware.code-spell-checke",
+        "donjayamanne.githistory",
+        "naumovs.color-highlight",
+        "stackbreak.comment-divider",
+        "IronGeek.vscode-env",
+        "dsznajder.es7-react-js-snippets",
+        "fxdebug.php-pack",
+        "MehediDracula.php-namespace-resolver",
+        "kokororin.vscode-phpfmt",
+        "mohamedbenhida.laravel-intellisense",
+        "amiralizadeh9480.laravel-extra-intellisense",
+        "cjhowe7.laravel-blade",
+        "onecentlin.laravel-blade",
+        "austenc.laravel-docs",
+        "absszero.vscode-laravel-goto",
+        "codingyu.laravel-goto-view",
+        "ryannaddy.laravel-artisan",
+        "esbenp.prettier-vscode",
+        "GitHub.remotehub",
+        "GitHub.vscode-pull-request-github",
+        "shufo.vscode-blade-formatter",
+        "rifi2k.format-html-in-php",
+        "Vue.volar",
+        "hediet.vscode-drawio"
+    ]
+}

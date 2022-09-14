@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+    diary:
+        env_file:
+            - ../.env
+        build: ..
+        container_name: diary_c
+        volumes:
+            - ../:/workspace:cached
+            - /workspace/vendor
+            - /workspace/node_modules
