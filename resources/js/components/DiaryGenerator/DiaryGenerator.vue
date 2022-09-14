@@ -4,3 +4,7 @@
         <diary-form></diary-form>
     </div>
 </template>
+
+<script>
+import "./diary-generator.scss";
+</script>

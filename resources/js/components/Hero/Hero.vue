@@ -1,9 +1,6 @@
-<style lang="scss">
-.hero {
-    max-width: 687px;
-    padding-right: 0;
-}
-</style>
+<script>
+import "./hero.scss";
+</script>
 
 <template>
     <svg class="hero" width="687" height="775" viewBox="0 0 687 775" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,0 +1,5 @@
+.content-container {
+    @extend .container-md;
+    @extend .bg-white;
+    min-height: 92vh;
+}

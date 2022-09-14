@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import "./diary-card.scss";
 export default {
     inject: ['handleDiaryDeleteion'],
     props: {

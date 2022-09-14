@@ -9,6 +9,13 @@ export default defineConfig({
             usePolling: true,
         },
     },
+    css: {
+        preprocessorOptions: {
+          scss: {
+            additionalData: `@import "resources/sass/app.scss";`
+          }
+        }
+      },
     plugins: [
         laravel({
             input: ["resources/sass/app.scss", "resources/js/app.js"],

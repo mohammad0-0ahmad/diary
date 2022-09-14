@@ -10,10 +10,9 @@
                 privacy: 'public'
             }
         ]">
-        <div class='content-container'>
+        <content-container>
             <diary-generator></diary-generator>
-            <diaries>
-            </diaries>
+            <diaries></diaries>
+        </content-container>
     </diaries-provider>
-    </div>
 @endsection

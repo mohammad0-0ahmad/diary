@@ -1,0 +1,19 @@
+.diary-generator {
+    @extend .bg-primary;
+    @extend .text-secondary;
+    @extend .mt-2;
+    @extend .card;
+    @extend .container;
+    @extend .my-3;
+    @extend .p-3;
+    max-width: 687px;
+
+    @include media-breakpoint-down(sm) {
+        max-width: 450px;
+    }
+
+    .title {
+        @extend .fs-3;
+        @extend .fw-bold;
+    }
+}

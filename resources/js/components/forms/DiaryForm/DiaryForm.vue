@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import "./diary-form.scss";
 export default {
     props: {
         action: {

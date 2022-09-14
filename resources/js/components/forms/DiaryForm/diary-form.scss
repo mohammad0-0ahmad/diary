@@ -1,0 +1,34 @@
+.diary-form {
+    @extend .form-group !optional;
+
+    &>* {
+        @extend .row;
+        margin: 10px 0;
+    }
+
+    textarea {
+        @extend .form-control;
+        min-height: 150px;
+    }
+
+    label {
+        @extend .my-md-0;
+        @extend .my-2 !optional;
+    }
+
+    label>span {
+        margin-bottom: 5px;
+        margin-left: 5px;
+        padding-left: 0;
+    }
+
+    button {
+        @extend .btn;
+        @extend .text-secondary;
+        @extend .col-sm-5;
+        @extend .col-12;
+        @extend .mx-sm-2;
+        @extend .mx-0;
+        @extend .my-2;
+    }
+}
