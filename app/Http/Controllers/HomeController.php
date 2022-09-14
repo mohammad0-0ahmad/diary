@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\DiaryController;
+use App\Http\Controllers\Traits\GetDiaries;
 use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class HomeController extends DiaryController
 {
+    use GetDiaries;
+
     /**
      * Show the application dashboard.
      *
@@ -16,8 +19,9 @@ class HomeController extends Controller
     {
         if (!Auth::check()) {
             return view('welcome');
-        }else{
-            return view('home');
+        } else {
+            $diaries = $this->getCurrentUserDiaries()->getData();
+            return view('home', ["diaries" => $diaries]);
         }
     }
 }

@@ -2,14 +2,7 @@
 
 @section('content')
     <diaries-provider
-        :data="[
-            { date: '2020-09-12', content: 'test', privacy: 'public' },
-            {
-                date: '2020-09-13',
-                content: 'test',
-                privacy: 'public'
-            }
-        ]">
+        :data='@json($diaries)'>
         <content-container>
             <diary-generator></diary-generator>
             <diaries></diaries>

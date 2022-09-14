@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Traits\GetDiaries;
 use App\Models\Diary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -11,22 +12,11 @@ use \Illuminate\Database\QueryException;
 
 class DiaryController extends Controller
 {
+    use GetDiaries;
+
     public function index()
     {
-        try {
-            $data = Diary::where("owner", auth()->user()->id)
-                ->get();
-
-            if (isset($data)) {
-                return Response::json($data, ResponseCode::HTTP_OK);
-            } else {
-                return response(null, ResponseCode::HTTP_NOT_FOUND);
-            }
-
-        } catch (Throwable $th) {
-            var_dump($th);
-            return response($null, ResponseCode::HTTP_BAD_REQUEST);
-        }
+        return $this->getCurrentUserDiaries();
     }
 
     public function show($date)
@@ -53,7 +43,7 @@ class DiaryController extends Controller
         $date = request('date');
         try {
             Diary::create([
-                'owner' => request('owner'),
+                'owner' => auth()->user()->id,
                 'privacy' => request('privacy'),
                 'date' => $date,
                 'content' => request('content'),
@@ -72,7 +62,7 @@ class DiaryController extends Controller
                     ];
                     break;
                 default:
-                    ResponseCode::HTTP_BAD_REQUEST;
+                    $status = ResponseCode::HTTP_BAD_REQUEST;
             }
             return Response::json($data, $status);
         }
