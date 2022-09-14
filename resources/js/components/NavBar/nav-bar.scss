@@ -1,0 +1,30 @@
+.nav-bar {
+    @extend .navbar;
+    @extend .navbar-expand-md;
+    @extend .bg-primary;
+    @extend .navbar-dark;
+    @extend .shadow-sm;
+
+    &>div {
+        @extend .container;
+    }
+
+    & .nav-bar-collapse {
+        @extend .collapse;
+        @extend .navbar-collapse;
+
+        &>ul {
+            @extend .navbar-nav;
+            @extend .ms-auto;
+
+
+            &>li {
+                @extend .nav-item;
+
+                &>a {
+                    @extend .nav-link;
+                }
+            }
+        }
+    }
+}
