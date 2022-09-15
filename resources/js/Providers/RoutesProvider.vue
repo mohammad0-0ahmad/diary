@@ -12,6 +12,9 @@ export default {
                 "register": "/register",
                 "login": "/login",
                 "logout": "/logout",
+                api: {
+                    "diaries": "/api/diaries/"
+                }
             }
         }
     },

@@ -16,14 +16,14 @@
 
 <body>
     <div id="app">
-        <auth-provider csrf="{{ csrf_token() }}" :user='@json(Auth::user())'>
-            <routes-provider>
+        <routes-provider>
+            <auth-provider csrf="{{ csrf_token() }}" :user='@json(Auth::user())'>
                 <nav-bar></nav-bar>
                 <main class="py-4">
                     @yield('content')
                 </main>
-            </routes-provider>
-        </auth-provider>
+            </auth-provider>
+        </routes-provider>
     </div>
 </body>
 

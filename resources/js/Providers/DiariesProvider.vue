@@ -17,22 +17,29 @@ export default {
         }
     },
     methods: {
-        handleDiaryDeleteion(date) {
+        addDiary(diary) {
+            this.diaries = [diary, ...this.diaries];
+        },
+
+        updateDiary(date, newDiary) {
+            this.diaries =
+                this.diaries.map(diary =>
+                    date === diary.date ? { ...diary, ...newDiary } : diary);
+        },
+
+        deleteDiary(date) {
             this.diaries =
                 this.diaries.filter(diary =>
                     diary.date !== date);
-        },
-        handleDiaryUpdate(newDiary) {
-            this.diaries =
-                this.diaries.map(diary =>
-                    diary.date === date ? { ...diary, ...newDiary } : diary);
         }
     },
+
     provide() {
         return {
             diaries: computed(() => this.diaries),
-            handleDiaryDeleteion: this.handleDiaryDeleteion,
-            handleDiaryUpdate: this.handleDiaryUpdate
+            addDiary: this.addDiary,
+            updateDiary: this.updateDiary,
+            deleteDiary: this.deleteDiary,
         }
     },
 }

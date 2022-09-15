@@ -1,19 +1,19 @@
 <template>
-    <form :action="action">
+    <form>
         <div class="diary-form">
             <div class="gx-0 justify-content-between">
                 <label class="col-md-5">
                     <span>
                         {{$t('components.diary-form.inputs.date.label')}}:
                     </span>
-                    <input :value="state.date" type="date" name="date" class="form-control" placeholder="yyyy-mm-dd"
-                        required />
+                    <input v-model="formInputs.date" type="date" name="date" class="form-control"
+                        placeholder="yyyy-mm-dd" required />
                 </label>
                 <label class="col-md-5">
                     <span>
                         {{$t('components.diary-form.inputs.privacy.label')}}:
                     </span>
-                    <select :value="state.privacy" class="form-select" name="privacy">
+                    <select v-model="formInputs.privacy" class="form-select" name="privacy">
                         <option value="public">{{$t('components.diary-form.inputs.privacy.options.public.label')}}
                         </option>
                         <option value="private">{{$t('components.diary-form.inputs.privacy.options.private.label')}}
@@ -25,7 +25,7 @@
                 <span>
                     {{$t('components.diary-form.inputs.content.label')}}:
                 </span>
-                <textarea :value="state.content" rows="5" name="content"
+                <textarea v-model="formInputs.content" rows="5" name="content"
                     :placeholder="$t('components.diary-form.inputs.content.placeholder')" required></textarea>
             </label>
             <div class="justify-content-center mt-4">
@@ -35,7 +35,7 @@
                         $t(`components.diary-form.buttons.${ isEditMode ? "save" : "create"}.label`)
                         }}
                     </button>
-                    <button @:click="handleOnCancel"
+                    <button type="button" @click="resetInputsToInitialValues"
                         class="bg-danger">{{$t('components.diary-form.buttons.cancel.label')}}</button>
                 </div>
             </div>
@@ -47,10 +47,6 @@
 import "./diary-form.scss";
 export default {
     props: {
-        action: {
-            type: String,
-            required: true,
-        },
         data: {
             type: Object,
             default: {
@@ -67,19 +63,24 @@ export default {
             type: Function,
         }
     },
+
     data() {
         return {
-            state: this.data,
+            formInputs: { ...this.data },
         }
     },
+
     methods: {
-        handleOnCancel() {
+        resetInputsToInitialValues(e) {
+            e?.preventDefault();
             if (this.onCancel) {
-                this.onCancel();
+                this.onCancel(e);
                 return;
             }
-            this.state = this.data;
+            this.formInputs = { ...this.data };
         }
-    }
+    },
+
+    expose: ["resetInputsToInitialValues", "formInputs"],
 }
 </script>
