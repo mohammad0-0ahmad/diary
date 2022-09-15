@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(DiaryController::class)
     ->prefix('diaries')
     ->as('diaries.')
-    ->middleware('auth:sanctum')
+    ->middleware('auth')
     ->group(function () {
         Route::get("/", "index")->name('index');
         Route::post("/", "store")->name('store');
