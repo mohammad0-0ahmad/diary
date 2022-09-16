@@ -26,7 +26,9 @@ class DiaryController extends Controller
         try {
             $data = Diary::where("owner", auth()->user()->id)
                 ->where("date", $date)
-                ->limit(1)->get()->toArray();
+                ->limit(1)
+                ->get()
+                ->toArray();
 
             if (count($data)) {
                 return Response::json($data[0], ResponseCode::HTTP_OK);
@@ -44,14 +46,14 @@ class DiaryController extends Controller
     {
         $date = request('date');
         try {
-            Diary::create([
+            $newDiary = Diary::create([
                 'owner' => auth()->user()->id,
                 'privacy' => request('privacy'),
                 'date' => $date,
                 'content' => request('content'),
-            ]);
+            ])->toArray();
 
-            return response(null, ResponseCode::HTTP_CREATED);
+            return Response::json($newDiary, ResponseCode::HTTP_CREATED);
 
         } catch (QueryException $e) {
             $status;
@@ -89,9 +91,14 @@ class DiaryController extends Controller
                 ->limit(1)
                 ->update($newData);
 
-            return response(null, ResponseCode::HTTP_OK);
+            // Could be better if it be returned with the previous query.
+            $updatedDiary = Diary::where([
+                'owner' => auth()->user()->id,
+                'date' => $newData["date"] ?? $date,
+            ])->first();
+
+            return Response::json($updatedDiary, ResponseCode::HTTP_OK);
         } catch (QueryException $e) {
-            echo $e;
             return response(null, ResponseCode::HTTP_BAD_REQUEST);
         }
     }

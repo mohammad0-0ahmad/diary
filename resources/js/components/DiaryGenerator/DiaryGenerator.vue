@@ -22,10 +22,10 @@ export default {
         async handleCreateDiary(e) {
             e.preventDefault();
             const formInputsData = this.getFormInputs();
-            const { status } = await this.fetchDiariesApi({ body: formInputsData });
+            const { status, data: newDiary } = await this.fetchDiariesApi({ body: formInputsData });
             if (status === StatusCodes.CREATED) {
                 this.resetFormInputs();
-                this.addDiary(formInputsData);
+                this.addDiary(newDiary);
                 //TODO: Implement toast;
                 alert("New diary has been created successfully.");
             } else {

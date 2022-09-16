@@ -29,11 +29,14 @@ class StoreDiaryTest extends TestCase
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 
-    public function test_create_new_diary_with_unexist_date()
+    public function test_create_new_diary()
     {
         $this->deleteAllTestUserDiaries($this->getTestUser());
-        $response = $this->createNewDiaryViaApiEndpoint($this->getTestUser(), self::$date, "test content");
+        define("DIARYCONTENT", "test content");
+        $response = $this->createNewDiaryViaApiEndpoint($this->getTestUser(), self::$date, DIARYCONTENT);
         $response->assertCreated();
+        $response->assertJsonPath("content", DIARYCONTENT);
+        $response->assertJsonPath("date", self::$date);
     }
 
     public function test_create_new_diary_with_an_already_exist_date()

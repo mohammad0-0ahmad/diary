@@ -72,10 +72,10 @@ export default {
         async handleEditSubmition(e, diaryDate) {
             e.preventDefault();
             const newDiaryData = this.getFormInputs();
-            const { status } = await this.fetchDiariesApi({ suffix: diaryDate, method: "PATCH", body: newDiaryData });
+            const { status, data: updatedDiary } = await this.fetchDiariesApi({ suffix: diaryDate, method: "PATCH", body: newDiaryData });
             if (status === StatusCodes.OK) {
                 this.toggleEditMode();
-                this.updateDiary(diaryDate, newDiaryData);
+                this.updateDiary(diaryDate, updatedDiary);
                 //TODO: Implement toast;
                 alert("Diary has been updated successfully.");
             } else {

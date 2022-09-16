@@ -6,6 +6,7 @@ use Tests\TestCase;
 
 class UpdateDiaryTest extends TestCase
 {
+    private static $diaryData = ["date" => "2022-09-05", "content" => "Diary before update."];
     private static $newDiaryData = ["date" => "2022-09-06", "content" => "Diary after update."];
 
     public function setUp(): void
@@ -14,9 +15,8 @@ class UpdateDiaryTest extends TestCase
         $user = $this->getTestUser();
         $this->deleteAllTestUserDiaries($user);
 
-        $date = "2022-09-05";
-        $this->createNewDiary($user->id, $date, "Diary before update.");
-        $testDiary = $this->getDiary($user->id, $date);
+        $this->createNewDiary($user->id, self::$diaryData["date"], self::$diaryData["content"]);
+        $testDiary = $this->getDiary($user->id, self::$diaryData["date"]);
         $this->assertNotNull($testDiary);
 
         $this->diaryOwner = $user;
@@ -39,6 +39,8 @@ class UpdateDiaryTest extends TestCase
         $diaryAfterUpdate = $this->getDiary($this->diaryOwner->id, self::$newDiaryData["date"]);
         $this->assertEquals($diaryAfterUpdate->date, self::$newDiaryData["date"]);
         $this->assertEquals($diaryAfterUpdate->content, self::$newDiaryData["content"]);
-    }
+        
+        $response->assertJson($diaryAfterUpdate->toArray(), true);
 
+    }
 }
