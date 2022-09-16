@@ -11,6 +11,7 @@ trait GetDiaries
     {
         try {
             $data = Diary::where("owner", auth()->user()->id)
+                ->orderBy('date', 'DESC')
                 ->get();
 
             if (isset($data)) {

@@ -23,7 +23,7 @@ class ShowDiariesTest extends TestCase
         $this->assertNotNull($testDiary2);
 
         $this->diaryOwner = $user;
-        $this->testDiaries = [$testDiary1->toArray(), $testDiary2->toArray()];
+        $this->testDiaries = [$testDiary2->toArray(), $testDiary1->toArray()];
     }
 
     public function test_show_diaries_with_unauthed_user()

@@ -19,6 +19,8 @@ class DiaryController extends Controller
         return $this->getCurrentUserDiaries();
     }
 
+    //TODO: Delete after code review.
+    // This and all related tests are not required for this app functionality, but just to have more code in this repo.
     public function show($date)
     {
         try {

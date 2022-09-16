@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Casts\DiaryPrivacy;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Diary extends Model
 {
@@ -14,5 +15,9 @@ class Diary extends Model
         'date',
         'privacy',
         'content',
+    ];
+
+    protected $casts = [
+        'privacy' => DiaryPrivacy::class,
     ];
 }
