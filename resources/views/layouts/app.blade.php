@@ -12,6 +12,10 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <!-- Scripts -->
     @vite(['resources/js/app.js'])
+    <script type="text/javascript"> 
+        document.documentElement.style.opacity = 0;
+        window.onload = ()=>{ document.documentElement.style.opacity = 1; };
+    </script>
 </head>
 
 <body>
