@@ -1,4 +1,9 @@
 .hero {
     max-width: 687px;
     padding-right: 0;
+    font-size: 30vw;
+
+    @include media-breakpoint-down(lg) {
+        font-size: 50vw;
+    }
 }
