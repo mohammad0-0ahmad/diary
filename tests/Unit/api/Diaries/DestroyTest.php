@@ -2,39 +2,33 @@
 
 namespace Tests\Unit;
 
+use App\Models\Diary;
 use Tests\TestCase;
 
 class DestroyDiaryTest extends TestCase
 {
-    private static $date = "2022-09-12";
-
     public function setUp(): void
     {
         parent::setUp();
-        $user = $this->getTestUser();
-        $this->deleteAllTestUserDiaries($user);
-        $this->createNewDiary($user->id, self::$date, "Diary to delete");
-        $testRecord = $this->getDiary($user->id, self::$date);
-        $this->assertNotNull($testRecord);
-        $this->diaryOwner = $user;
+        $this->diaryToBeDeleted = Diary::factory()->create(['owner' => $this->diaryOwner->id]);
     }
 
     public function test_delete_diary_with_unauthed_user()
     {
-        $response = $this->deleteJson(route('diaries.destroy', self::$date));
+        $response = $this->deleteJson(route('diaries.destroy', $this->diaryToBeDeleted->date));
         $response->assertUnauthorized();
 
-        $testRecord = $this->getDiary($this->diaryOwner->id, self::$date);
+        $testRecord = $this->getDiary($this->diaryOwner->id, $this->diaryToBeDeleted->date);
         $this->assertNotNull($testRecord);
     }
 
     public function test_delete_user_diary()
     {
         $response = $this->actingAs($this->diaryOwner)
-            ->delete(route('diaries.destroy', self::$date));
+            ->delete(route('diaries.destroy', $this->diaryToBeDeleted->date));
         $response->assertoK();
 
-        $testRecord = $this->getDiary($this->diaryOwner->id, self::$date);
+        $testRecord = $this->getDiary($this->diaryOwner->id, $this->diaryToBeDeleted->date);
         $this->assertNull($testRecord);
     }
 

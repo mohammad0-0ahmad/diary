@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\Diary;
 use Tests\TestCase;
 
 class ShowDiariesTest extends TestCase
@@ -9,21 +10,15 @@ class ShowDiariesTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $user = $this->getTestUser();
-        $this->deleteAllTestUserDiaries($user);
+        $this->testDiaries = array_map(function ($date) {
+            $diary = Diary::factory()->create([
+                'owner' => $this->diaryOwner->id,
+                'date' => $date,
+            ])->toArray();
+            unset($diary["id"]);
 
-        $date1 = "2022-09-02";
-        $this->createNewDiary($user->id, $date1, "Diary to show.");
-        $testDiary1 = $this->getDiary($user->id, $date1);
-        $this->assertNotNull($testDiary1);
-
-        $date2 = "2022-09-03";
-        $this->createNewDiary($user->id, $date2, "Diary to show.");
-        $testDiary2 = $this->getDiary($user->id, $date2);
-        $this->assertNotNull($testDiary2);
-
-        $this->diaryOwner = $user;
-        $this->testDiaries = [$testDiary2->toArray(), $testDiary1->toArray()];
+            return $diary;
+        }, ['2022-09-12', '2022-09-11']);
     }
 
     public function test_show_diaries_with_unauthed_user()

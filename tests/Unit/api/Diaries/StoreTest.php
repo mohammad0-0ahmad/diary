@@ -2,22 +2,27 @@
 
 namespace Tests\Unit;
 
+use App\Models\Diary;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
 class StoreDiaryTest extends TestCase
 {
-    private static $date = "2022-02-02";
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->testDiary = Diary::factory()->make();
+    }
 
-    private function createNewDiaryViaApiEndpoint($user, $date, $content)
+    private function createNewDiaryViaApiEndpoint()
     {
         $diaryData = [
-            'owner' => $user->id,
-            'date' => $date,
-            'content' => $content,
+            'owner' => $this->user->id,
+            'date' => $this->testDiary->date,
+            'content' => $this->testDiary->content,
         ];
 
-        $response = $this->actingAs($user)
+        $response = $this->actingAs($this->user)
             ->postJson(route('diaries.store'), $diaryData);
 
         return $response;
@@ -25,23 +30,22 @@ class StoreDiaryTest extends TestCase
 
     public function test_create_new_diary_with_unauthed_user()
     {
-        $response = $this->postJson(route('diaries.store'));
+        $response = $this->postJson(route('diaries.store', $this->testDiary));
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 
     public function test_create_new_diary()
     {
-        $this->deleteAllTestUserDiaries($this->getTestUser());
-        define("DIARYCONTENT", "test content");
-        $response = $this->createNewDiaryViaApiEndpoint($this->getTestUser(), self::$date, DIARYCONTENT);
+        $response = $this->createNewDiaryViaApiEndpoint();
         $response->assertCreated();
-        $response->assertJsonPath("content", DIARYCONTENT);
-        $response->assertJsonPath("date", self::$date);
+        $response->assertJsonPath("content", $this->testDiary->content);
+        $response->assertJsonPath("date", $this->testDiary->date);
     }
 
     public function test_create_new_diary_with_an_already_exist_date()
     {
-        $response = $this->createNewDiaryViaApiEndpoint($this->getTestUser(), self::$date, "test content");
+        $this->createNewDiaryViaApiEndpoint();
+        $response = $this->createNewDiaryViaApiEndpoint();
         $response->assertStatus(Response::HTTP_CONFLICT);
         $this->assertTrue(isset($response->getData()->msg));
     }

@@ -4,31 +4,18 @@ namespace Tests;
 
 use App\Models\Diary;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication;
+    use CreatesApplication, RefreshDatabase;
 
-    protected function getTestUser($testUserEmailSuffix = "")
+    protected function setUp(): void
     {
-        $user = User::firstWhere('email', "test$testUserEmailSuffix@diary.se");
-        return $user;
-    }
-
-    protected function deleteAllTestUserDiaries($user)
-    {
-        return Diary::where('owner', $user->id)->delete();
-    }
-
-    protected function createNewDiary($owner, $date, $content, $privacy = "private")
-    {
-        return Diary::create([
-            'owner' => $owner,
-            'privacy' => $privacy,
-            'date' => $date,
-            'content' => $content,
-        ]);
+        parent::setUp();
+        $this->user = User::factory()->create();
+        $this->diaryOwner = $this->user;
     }
 
     protected function getDiary($owner, $date)
