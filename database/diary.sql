@@ -51,6 +51,7 @@ CREATE TABLE `diaries` (
 
 LOCK TABLES `diaries` WRITE;
 /*!40000 ALTER TABLE `diaries` DISABLE KEYS */;
+INSERT INTO `diaries` VALUES (21,'1971-01-27',NULL,'Minima dolorem exercitationem et rerum nemo ab. Soluta id praesentium saepe et qui consequatur. Beatae hic nobis rerum expedita rerum architecto nulla.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'1971-01-30',NULL,'Amet ut molestiae aut reiciendis eius qui est. Perspiciatis modi qui voluptatum consectetur dolorum. Tenetur et dicta voluptatem voluptatem sint.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'1974-06-02',NULL,'Dolorem at harum atque quisquam deleniti recusandae. Ea dicta non accusantium et libero quam impedit ut.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'1977-11-25',NULL,'Ad ipsam iure explicabo. Voluptatem qui at ratione non sed. Neque explicabo recusandae quisquam blanditiis quas. Rerum necessitatibus commodi consequatur hic.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'1983-06-20',NULL,'Rerum et ad iste accusamus quo sed est. Et at fugit facilis eligendi.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'1985-06-27',NULL,'Quos non qui et sint excepturi est. Dolorem dolor laboriosam cupiditate quas in. Ut commodi labore et rerum non velit.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'1989-02-18',NULL,'Sunt quis culpa enim dolorem asperiores eius aliquam at. Repudiandae omnis ratione harum enim itaque. Quas fugit voluptas animi tempora voluptatem quia quam. Sit fuga odio corrupti.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'1992-03-25',NULL,'Nostrum fugit officiis cumque ullam consequatur dicta. Dolor et id architecto eos necessitatibus. Commodi eius earum aperiam laudantium autem ad itaque.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'1993-01-17',NULL,'Libero beatae assumenda adipisci quibusdam velit aliquam est. A esse eos quod qui. Repellendus qui velit illum error tempore. Quo reprehenderit aut enim optio rerum.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'1996-03-19',NULL,'Quia voluptatem eum quis quibusdam voluptas omnis. Tempora natus impedit qui reprehenderit officia rerum. Enim harum ut magni laboriosam. Et aut magni consequatur eos hic repellat.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'1997-01-24',NULL,'A et cumque nulla adipisci. Eum in velit sit iste minima.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'2001-12-15',NULL,'Explicabo earum ea non nesciunt sunt error. Veritatis quia accusamus rerum quo sint. Voluptatem consequatur sequi voluptatibus delectus corporis. Quidem mollitia dolore ipsum dicta ea.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'2003-05-11',NULL,'Voluptatum voluptas vero qui expedita itaque nobis ut. Numquam doloremque aut consequatur autem voluptates maiores accusamus. Est voluptas suscipit et earum.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'2004-02-11',NULL,'Qui enim aut qui corporis voluptas quia. Delectus eligendi dolores et quo sit. Itaque tempora iure est aut aut aspernatur non. Repellendus tempore et occaecati est eum praesentium.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'2005-01-25',NULL,'Vero incidunt consequuntur autem molestiae eos dolorum. Quis tenetur delectus inventore molestias sit voluptas.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'2008-10-23',NULL,'Odio ipsum aut sequi. Repellat aut et quo. Ullam voluptas nam eos repudiandae. Nostrum sequi ut quibusdam aliquid odit et explicabo aspernatur.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'2009-03-20',NULL,'Temporibus esse nisi perspiciatis quam rerum accusamus. Suscipit quia eaque recusandae rerum accusamus rerum aperiam accusamus. Ut unde in nisi neque illum aut.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'2011-01-14',NULL,'Ea occaecati ex rerum. Rerum ex repudiandae aut et esse aut.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'2012-07-24',NULL,'Facere laudantium quia officiis ad qui voluptate commodi. Fugit quisquam dolorem distinctio et nobis quidem velit. Culpa et modi non mollitia ut. Enim expedita totam quae.','2022-09-18 20:41:29','2022-09-18 20:41:29'),(21,'2017-06-12',NULL,'Nisi illo ut recusandae debitis omnis. Voluptatibus soluta rerum aut aspernatur maiores dolorem qui. Ipsa voluptates illo recusandae nostrum ipsa.','2022-09-18 20:41:29','2022-09-18 20:41:29');
 /*!40000 ALTER TABLE `diaries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,7 +180,7 @@ CREATE TABLE `profiles` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `profiles_id_foreign` FOREIGN KEY (`id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,10 +189,7 @@ CREATE TABLE `profiles` (
 
 LOCK TABLES `profiles` WRITE;
 /*!40000 ALTER TABLE `profiles` DISABLE KEYS */;
-INSERT INTO `profiles` VALUES (1,'en','2022-09-08 14:38:16',NULL);
-INSERT INTO `profiles` VALUES (2,'en','2022-09-08 14:38:16',NULL);
-INSERT INTO `profiles` VALUES (3,'en','2022-09-08 14:38:16',NULL);
-INSERT INTO `profiles` VALUES (4,'en','2022-09-08 14:38:16',NULL);
+INSERT INTO `profiles` VALUES (21,'en','2022-09-18 20:41:29',NULL);
 /*!40000 ALTER TABLE `profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,7 +211,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -222,10 +220,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Demo','demo@diary.se',NULL,'$2y$10$e7UsJkqagjdX/nPUBr2NmeegVz5XSBWGibw4IlQUwJVClog2rR1mm',NULL,'2022-09-08 14:38:16','2022-09-08 14:38:16');
-INSERT INTO `users` VALUES (2,'Test','test@diary.se',NULL,'$2y$10$e7UsJkqagjdX/nPUBr2NmeegVz5XSBWGibw4IlQUwJVClog2rR1mm',NULL,'2022-09-08 14:38:16','2022-09-08 14:38:16');
-INSERT INTO `users` VALUES (3,'Test1','test1@diary.se',NULL,'$2y$10$e7UsJkqagjdX/nPUBr2NmeegVz5XSBWGibw4IlQUwJVClog2rR1mm',NULL,'2022-09-08 14:38:16','2022-09-08 14:38:16');
-INSERT INTO `users` VALUES (4,'Test2','test2@diary.se',NULL,'$2y$10$e7UsJkqagjdX/nPUBr2NmeegVz5XSBWGibw4IlQUwJVClog2rR1mm',NULL,'2022-09-08 14:38:16','2022-09-08 14:38:16');
+INSERT INTO `users` VALUES (21,'Belle Medhurst','demo@diary.se','2022-09-18 20:41:29','$2y$10$e7UsJkqagjdX/nPUBr2NmeegVz5XSBWGibw4IlQUwJVClog2rR1mm','5zFmXUdEyB','2022-09-18 20:41:29','2022-09-18 20:41:29');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -257,4 +252,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-08 19:22:54
+-- Dump completed on 2022-09-18 20:42:42
